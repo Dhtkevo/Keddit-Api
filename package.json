@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "prisma": "^6.6.0"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "tsx --watch app.ts"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1"
+  }
+}
