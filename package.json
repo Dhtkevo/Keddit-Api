@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "prisma": "^6.6.0"
   },
@@ -8,6 +9,8 @@
     "dev": "tsx --watch app.ts"
   },
   "devDependencies": {
-    "@types/express": "^5.0.1"
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "dotenv": "^16.4.7"
   }
 }
