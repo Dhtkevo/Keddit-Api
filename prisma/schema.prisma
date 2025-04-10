@@ -16,21 +16,14 @@ datasource db {
 
 model User {
   id            Int       @id             @default(autoincrement())
-  username      String    @unique
-  password      String
+  githubId      String    @unique
+  username      String    
+  avatarUrl     String    
   createdAt     DateTime? @default(now())
-  profile       Profile?
   post          Post[]
   comments      Comment[]
   notifications Notification[]
 
-}
-
-model Profile {
-  id       Int    @id @default(autoincrement())
-  imageUrl String?
-  user     User   @relation(fields: [userId], references: [id])
-  userId   Int    @unique
 }
 
 model Post {
