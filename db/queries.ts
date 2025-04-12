@@ -6,7 +6,11 @@ export const getUserGitHubDB = async (github_id: string) => {
       githubId: github_id,
     },
     include: {
-      post: true,
+      post: {
+        include: {
+          comments: true,
+        },
+      },
       comments: true,
       notifications: true,
     },
