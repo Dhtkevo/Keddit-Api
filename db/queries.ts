@@ -14,3 +14,17 @@ export const getUserGitHubDB = async (github_id: string) => {
 
   return user;
 };
+
+export const createNewPostDB = async (
+  title: string,
+  text: string,
+  userId: number
+) => {
+  await prisma.post.create({
+    data: {
+      title: title,
+      text: text,
+      userId: userId,
+    },
+  });
+};
