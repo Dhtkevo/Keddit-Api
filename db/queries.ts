@@ -37,3 +37,20 @@ export const createNewPostDB = async (
     },
   });
 };
+
+export const getUserFromIdDB = async (userId: number) => {
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+    include: {
+      post: {
+        include: {
+          comments: true,
+        },
+      },
+    },
+  });
+
+  return user;
+};

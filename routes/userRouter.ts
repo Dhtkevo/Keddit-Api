@@ -1,6 +1,11 @@
 import express from "express";
-import { getAllUsersController } from "../controllers/usersController";
+import {
+  getAllUsersController,
+  getUserFromIdController,
+} from "../controllers/usersController";
 
 export const userRouter = express.Router();
 
 userRouter.get("/", getAllUsersController);
+
+userRouter.get("/:userId", getUserFromIdController);
