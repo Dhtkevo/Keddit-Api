@@ -19,6 +19,11 @@ export const getUserGitHubDB = async (github_id: string) => {
   return user;
 };
 
+export const getAllUsersDB = async () => {
+  const users = await prisma.user.findMany();
+  return users;
+};
+
 export const createNewPostDB = async (
   title: string,
   text: string,
