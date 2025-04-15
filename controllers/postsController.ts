@@ -1,4 +1,4 @@
-import { createNewPostDB } from "../db/queries";
+import { createNewPostDB, getPostByIdDB } from "../db/queries";
 
 export const createPostController = async (req, res) => {
   const { title, text, userId } = req.body;
@@ -6,4 +6,12 @@ export const createPostController = async (req, res) => {
   await createNewPostDB(title, text, userId);
 
   res.status(200).json({ message: "Post created" });
+};
+
+export const getPostByIdController = async (req, res) => {
+  const { postId } = req.params;
+
+  const foundPost = await getPostByIdDB(Number(postId));
+
+  res.status(200).json(foundPost);
 };

@@ -38,6 +38,36 @@ export const createNewPostDB = async (
   });
 };
 
+export const createCommentDB = async (
+  text: string,
+  userId: number,
+  postId: number
+) => {
+  await prisma.comment.create({
+    data: {
+      text: text,
+      userId: userId,
+      postId: postId,
+    },
+  });
+};
+
+export const getPostByIdDB = async (postId: number) => {
+  const post = await prisma.post.findUnique({
+    where: { id: postId },
+    include: {
+      user: true,
+      comments: {
+        include: {
+          user: true,
+        },
+      },
+    },
+  });
+
+  return post;
+};
+
 export const getUserFromIdDB = async (userId: number) => {
   const user = await prisma.user.findUnique({
     where: {
