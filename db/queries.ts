@@ -84,3 +84,16 @@ export const getUserFromIdDB = async (userId: number) => {
 
   return user;
 };
+
+export const updatePostVotesIncrementDB = async (postId: number) => {
+  await prisma.post.update({
+    where: {
+      id: postId,
+    },
+    data: {
+      upVotes: {
+        increment: 1,
+      },
+    },
+  });
+};
