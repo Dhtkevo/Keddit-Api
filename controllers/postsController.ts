@@ -1,6 +1,7 @@
 import {
   createNewPostDB,
   getPostByIdDB,
+  updatePostVotesDecrementDB,
   updatePostVotesIncrementDB,
 } from "../db/queries";
 
@@ -24,6 +25,14 @@ export const incrementPostVotesController = async (req, res) => {
   const { postId } = req.params;
 
   await updatePostVotesIncrementDB(Number(postId));
+
+  res.json({ message: "Upvoted Post ID: " + postId });
+};
+
+export const decrementPostVotesController = async (req, res) => {
+  const { postId } = req.params;
+
+  await updatePostVotesDecrementDB(Number(postId));
 
   res.json({ message: "Upvoted Post ID: " + postId });
 };

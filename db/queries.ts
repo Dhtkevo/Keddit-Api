@@ -97,3 +97,16 @@ export const updatePostVotesIncrementDB = async (postId: number) => {
     },
   });
 };
+
+export const updatePostVotesDecrementDB = async (postId: number) => {
+  await prisma.post.update({
+    where: {
+      id: postId,
+    },
+    data: {
+      upVotes: {
+        decrement: 1,
+      },
+    },
+  });
+};

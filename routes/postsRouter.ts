@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createPostController,
+  decrementPostVotesController,
   getPostByIdController,
   incrementPostVotesController,
 } from "../controllers/postsController";
@@ -15,3 +16,5 @@ postsRouter.post("/", createPostController);
 postsRouter.get("/:postId", getPostByIdController);
 
 postsRouter.put("/:postId/upvote", incrementPostVotesController);
+
+postsRouter.put("/:postId/downvote", decrementPostVotesController);
