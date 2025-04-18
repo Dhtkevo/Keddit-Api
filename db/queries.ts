@@ -118,6 +118,10 @@ export const getPostsMatchingTitleDB = async (query: string) => {
         contains: query,
       },
     },
+    include: {
+      comments: true,
+      user: true,
+    },
   });
 
   return results;
