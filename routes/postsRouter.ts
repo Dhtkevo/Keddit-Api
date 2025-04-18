@@ -2,6 +2,7 @@ import express from "express";
 import {
   createPostController,
   decrementPostVotesController,
+  getMatchingPostsTitleController,
   getPostByIdController,
   incrementPostVotesController,
 } from "../controllers/postsController";
@@ -12,6 +13,8 @@ export const postsRouter = express.Router();
 postsRouter.use("/:postId/comments", commentsRouter);
 
 postsRouter.post("/", createPostController);
+
+postsRouter.get("/search", getMatchingPostsTitleController);
 
 postsRouter.get("/:postId", getPostByIdController);
 

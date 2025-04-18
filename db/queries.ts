@@ -110,3 +110,15 @@ export const updatePostVotesDecrementDB = async (postId: number) => {
     },
   });
 };
+
+export const getPostsMatchingTitleDB = async (query: string) => {
+  const results = await prisma.post.findMany({
+    where: {
+      title: {
+        contains: query,
+      },
+    },
+  });
+
+  return results;
+};

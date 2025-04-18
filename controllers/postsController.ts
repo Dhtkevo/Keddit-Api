@@ -1,6 +1,7 @@
 import {
   createNewPostDB,
   getPostByIdDB,
+  getPostsMatchingTitleDB,
   updatePostVotesDecrementDB,
   updatePostVotesIncrementDB,
 } from "../db/queries";
@@ -35,4 +36,12 @@ export const decrementPostVotesController = async (req, res) => {
   await updatePostVotesDecrementDB(Number(postId));
 
   res.json({ message: "Upvoted Post ID: " + postId });
+};
+
+export const getMatchingPostsTitleController = async (req, res) => {
+  const { title } = req.query;
+
+  const searchResults = await getPostsMatchingTitleDB(title);
+
+  res.json(searchResults);
 };

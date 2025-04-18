@@ -5,7 +5,7 @@ import "./passport/passport.js";
 import session from "express-session";
 import passport from "passport";
 import { authRouter } from "./routes/authRouter.js";
-import { postsRouter } from "./routes/PostsRouter.js";
+import { postsRouter } from "./routes/postsRouter.js";
 import { userRouter } from "./routes/userRouter.js";
 
 const port = process.env.PORT;
