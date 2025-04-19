@@ -1,4 +1,9 @@
-import { getAllUsersDB, getUserFromIdDB } from "../db/queries";
+import {
+  followUserDB,
+  getAllUsersDB,
+  getUserFromIdDB,
+  unfollowUserDB,
+} from "../db/queries";
 
 export const getAllUsersController = async (req, res) => {
   const users = await getAllUsersDB();
@@ -9,4 +14,20 @@ export const getUserFromIdController = async (req, res) => {
   const user = await getUserFromIdDB(Number(req.params.userId));
 
   res.json(user);
+};
+
+export const followUserController = async (req, res) => {
+  const { userId, targetUserId } = req.body;
+
+  await followUserDB(Number(userId), Number(targetUserId));
+
+  res.json({ message: "User followed" });
+};
+
+export const unfollowUserController = async (req, res) => {
+  const { userId, targetUserId } = req.body;
+
+  await unfollowUserDB(Number(userId), Number(targetUserId));
+
+  res.json({ message: "User unfollowed" });
 };
