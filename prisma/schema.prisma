@@ -15,16 +15,16 @@ datasource db {
 }
 
 model User {
-  id            Int       @id             @default(autoincrement())
-  githubId      String    @unique
+  id            Int             @id                         @default(autoincrement())
+  githubId      String          @unique
   username      String    
   avatarUrl     String    
-  createdAt     DateTime? @default(now())
-  following     Int[]     
+  createdAt     DateTime?       @default(now())
+  following     User[]          @relation("Following")
+  followedBy    User[]          @relation("Following")
   post          Post[]
   comments      Comment[]
   notifications Notification[]
-
 }
 
 model Post {
