@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  checkUserFollowingController,
   followUserController,
   getAllUsersController,
   getUserFromIdController,
@@ -15,3 +16,5 @@ userRouter.get("/:userId", getUserFromIdController);
 userRouter.post("/follow", followUserController);
 
 userRouter.post("/unfollow", unfollowUserController);
+
+userRouter.post("/check_following", checkUserFollowingController);

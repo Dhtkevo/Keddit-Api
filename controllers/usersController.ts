@@ -1,4 +1,5 @@
 import {
+  checkUserFollowingDB,
   followUserDB,
   getAllUsersDB,
   getUserFromIdDB,
@@ -30,4 +31,15 @@ export const unfollowUserController = async (req, res) => {
   await unfollowUserDB(Number(userId), Number(targetUserId));
 
   res.json({ message: "User unfollowed" });
+};
+
+export const checkUserFollowingController = async (req, res) => {
+  const { userId, targetUserId } = req.body;
+
+  const response = await checkUserFollowingDB(
+    Number(userId),
+    Number(targetUserId)
+  );
+
+  res.json(response);
 };
