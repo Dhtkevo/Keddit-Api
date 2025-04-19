@@ -175,10 +175,36 @@ export const unfollowUserDB = async (userId: number, targetUserId: number) => {
   });
 };
 
+export const checkUserFollowingDB = async (
+  userId: number,
+  targetUserId: number
+) => {
+  const followedUser = await prisma.user.findFirst({
+    where: {
+      AND: [
+        { id: targetUserId },
+        {
+          followedBy: {
+            some: {
+              id: userId,
+            },
+          },
+        },
+      ],
+    },
+  });
+
+  return followedUser;
+};
+
 // async function test() {
 //   const users = await prisma.user.findMany({
 //     include: {
-//       followedBy: true,
+//       followedBy: {
+//         include: {
+//           followedBy: true,
+//         },
+//       },
 //       following: true,
 //     },
 //   });
