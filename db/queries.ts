@@ -196,19 +196,3 @@ export const checkUserFollowingDB = async (
 
   return followedUser;
 };
-
-// async function test() {
-//   const users = await prisma.user.findMany({
-//     include: {
-//       followedBy: {
-//         include: {
-//           followedBy: true,
-//         },
-//       },
-//       following: true,
-//     },
-//   });
-//   console.log(users);
-// }
-
-// test();
