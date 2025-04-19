@@ -126,3 +126,51 @@ export const getPostsMatchingTitleDB = async (query: string) => {
 
   return results;
 };
+
+export const followUserDB = async (userId: number, targetUserId: number) => {
+  await prisma.user.update({
+    where: {
+      id: targetUserId,
+    },
+    data: {
+      followedBy: {
+        connect: { id: userId },
+      },
+    },
+  });
+
+  await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      following: {
+        connect: { id: targetUserId },
+      },
+    },
+  });
+};
+
+export const unfollowUserDB = async (userId: number, targetUserId: number) => {
+  await prisma.user.update({
+    where: {
+      id: targetUserId,
+    },
+    data: {
+      followedBy: {
+        disconnect: { id: userId },
+      },
+    },
+  });
+
+  await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      following: {
+        disconnect: { id: targetUserId },
+      },
+    },
+  });
+};
