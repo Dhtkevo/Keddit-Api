@@ -6,8 +6,11 @@ import {
   getUserFromIdController,
   unfollowUserController,
 } from "../controllers/usersController";
+import { notificationRouter } from "./notificationRouter";
 
 export const userRouter = express.Router();
+
+userRouter.use("/:userId/notifications", notificationRouter);
 
 userRouter.get("/", getAllUsersController);
 

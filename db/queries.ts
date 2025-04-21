@@ -209,7 +209,7 @@ export const createUserFollowNotification = async (
     data: {
       notifications: {
         create: {
-          type: "Follow Notification",
+          type: "New Follower",
           message: `${loggedUser?.username} has followed your account.`,
         },
       },
@@ -217,11 +217,19 @@ export const createUserFollowNotification = async (
   });
 };
 
-const test = async () => {
-  const users = await prisma.user.findMany({
-    include: { notifications: true },
+export const getAllUserNotifications = async (userId: number) => {
+  const notis = await prisma.notification.findMany({
+    where: { userId: userId },
   });
-  console.log(users);
+
+  return notis;
 };
 
-test();
+// const test = async () => {
+//   const users = await prisma.user.findMany({
+//     include: { notifications: true },
+//   });
+//   console.log(users);
+// };
+
+// test();
