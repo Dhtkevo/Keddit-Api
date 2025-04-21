@@ -196,3 +196,32 @@ export const checkUserFollowingDB = async (
 
   return followedUser;
 };
+
+export const createUserFollowNotification = async (
+  loggedUserId: number,
+  targetUserId: number
+) => {
+  const loggedUser = await prisma.user.findUnique({
+    where: { id: loggedUserId },
+  });
+  const targetUser = await prisma.user.update({
+    where: { id: targetUserId },
+    data: {
+      notifications: {
+        create: {
+          type: "Follow Notification",
+          message: `${loggedUser?.username} has followed your account.`,
+        },
+      },
+    },
+  });
+};
+
+// const test = async () => {
+//   const users = await prisma.user.findMany({
+//     include: { notifications: true },
+//   });
+//   console.log(users);
+// };
+
+// test();
