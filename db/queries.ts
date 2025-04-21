@@ -254,6 +254,7 @@ export const getUserFeedPosts = async (userId: number) => {
         },
       ],
     },
+    include: { comments: true, user: true },
   });
 
   return posts;
