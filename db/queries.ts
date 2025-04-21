@@ -229,11 +229,30 @@ export const deleteNotification = async (notifId: number) => {
   await prisma.notification.delete({ where: { id: notifId } });
 };
 
-// const test = async () => {
-//   const users = await prisma.user.findMany({
-//     include: { notifications: true },
-//   });
-//   console.log(users);
-// };
+export const getUserFeedPosts = async (userId: number) => {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    include: { following: true },
+  });
 
-// test();
+  const followingUserIds: number[] = [];
+
+  for (let following of user?.following) {
+    followingUserIds.push(following.id);
+  }
+
+  const posts = await prisma.post.findMany({
+    where: {
+      OR: [
+        { id: userId },
+        {
+          userId: {
+            in: followingUserIds,
+          },
+        },
+      ],
+    },
+  });
+
+  return posts;
+};
