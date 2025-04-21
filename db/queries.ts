@@ -204,7 +204,7 @@ export const createUserFollowNotification = async (
   const loggedUser = await prisma.user.findUnique({
     where: { id: loggedUserId },
   });
-  const targetUser = await prisma.user.update({
+  await prisma.user.update({
     where: { id: targetUserId },
     data: {
       notifications: {
@@ -223,6 +223,10 @@ export const getAllUserNotifications = async (userId: number) => {
   });
 
   return notis;
+};
+
+export const deleteNotification = async (notifId: number) => {
+  await prisma.notification.delete({ where: { id: notifId } });
 };
 
 // const test = async () => {
