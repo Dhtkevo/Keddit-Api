@@ -235,6 +235,8 @@ export const getUserFeedPosts = async (userId: number) => {
     include: { following: true },
   });
 
+  if (!user) return null;
+
   const followingUserIds: number[] = [];
 
   for (let following of user?.following) {

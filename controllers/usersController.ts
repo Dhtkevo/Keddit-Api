@@ -3,6 +3,7 @@ import {
   createUserFollowNotification,
   followUserDB,
   getAllUsersDB,
+  getUserFeedPosts,
   getUserFromIdDB,
   unfollowUserDB,
 } from "../db/queries";
@@ -44,4 +45,12 @@ export const checkUserFollowingController = async (req, res) => {
   );
 
   res.json(response);
+};
+
+export const getUserFeedController = async (req, res) => {
+  const { userId } = req.params;
+
+  const userFeed = await getUserFeedPosts(Number(userId));
+
+  res.json(userFeed);
 };
