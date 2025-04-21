@@ -217,11 +217,11 @@ export const createUserFollowNotification = async (
   });
 };
 
-// const test = async () => {
-//   const users = await prisma.user.findMany({
-//     include: { notifications: true },
-//   });
-//   console.log(users);
-// };
+const test = async () => {
+  const users = await prisma.user.findMany({
+    include: { notifications: true },
+  });
+  console.log(users);
+};
 
-// test();
+test();

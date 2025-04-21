@@ -1,5 +1,6 @@
 import {
   checkUserFollowingDB,
+  createUserFollowNotification,
   followUserDB,
   getAllUsersDB,
   getUserFromIdDB,
@@ -21,6 +22,7 @@ export const followUserController = async (req, res) => {
   const { userId, targetUserId } = req.body;
 
   await followUserDB(Number(userId), Number(targetUserId));
+  await createUserFollowNotification(Number(userId), Number(targetUserId));
 
   res.json({ message: "User followed" });
 };
