@@ -6,7 +6,8 @@
     "express-session": "^1.18.1",
     "passport": "^0.7.0",
     "passport-github2": "^0.1.12",
-    "prisma": "^6.6.0"
+    "prisma": "^6.6.0",
+    "socket.io": "^4.8.1"
   },
   "scripts": {
     "dev": "tsx --watch app.ts"

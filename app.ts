@@ -8,7 +8,7 @@ import { authRouter } from "./routes/authRouter.js";
 import { postsRouter } from "./routes/postsRouter.js";
 import { userRouter } from "./routes/userRouter.js";
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const app = express();
 
