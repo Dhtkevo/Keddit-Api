@@ -2,6 +2,11 @@ const GitHubStrategy = require("passport-github2").Strategy;
 import "dotenv/config";
 import passport from "passport";
 import { prisma } from "../db/prisma";
+import { getUserFromIdDB, getUserGitHubDB } from "../db/queries";
+
+interface UserExtended extends Express.User {
+  id?: string;
+}
 
 passport.use(
   new GitHubStrategy(
@@ -26,7 +31,7 @@ passport.use(
       } else {
         await prisma.user.update({
           where: {
-            githubId: profile.id,
+            id: user.id,
           },
           data: {
             username: profile.username,
@@ -34,7 +39,16 @@ passport.use(
           },
         });
       }
-      done(null, profile);
+      done(null, user);
     }
   )
 );
+
+passport.serializeUser((user: UserExtended, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (user: number, done) => {
+  const foundUser = await getUserFromIdDB(user);
+  done(null, foundUser);
+});

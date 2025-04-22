@@ -79,6 +79,7 @@ export const getUserFromIdDB = async (userId: number) => {
           comments: true,
         },
       },
+      notifications: true,
     },
   });
 

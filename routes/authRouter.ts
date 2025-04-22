@@ -1,12 +1,7 @@
 import express from "express";
 import passport from "passport";
-import { getUserGitHubDB } from "../db/queries";
 
 export const authRouter = express.Router();
-
-interface UserExtended extends Express.User {
-  id?: string;
-}
 
 authRouter.get(
   "/github",
@@ -31,11 +26,9 @@ authRouter.get(
   }
 );
 
-passport.serializeUser((user: UserExtended, done) => {
-  done(null, user.id);
-});
-
-passport.deserializeUser(async (user: string, done) => {
-  const foundUser = await getUserGitHubDB(user);
-  done(null, foundUser);
+authRouter.delete("/logout", (req, res, next) => {
+  req.logOut((err) => {
+    if (err) return next(err);
+  });
+  res.json({ message: "Logged Out" });
 });
