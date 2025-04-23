@@ -17,6 +17,12 @@ app.use(
     secret: process.env.SESSION_SECRET || "default_secret",
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 1000 * 60 * 60 * 24,
+    },
   })
 );
 app.use(passport.initialize());
@@ -28,6 +34,9 @@ app.use(
     credentials: true,
   })
 );
+
+app.set("trust proxy", 1);
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
