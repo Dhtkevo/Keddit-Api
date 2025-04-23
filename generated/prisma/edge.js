@@ -185,11 +185,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://dhtkevo:supreme10@localhost:5432/keddit?schema=public"
+        "value": null
       }
     }
   },
