@@ -19,7 +19,7 @@ authRouter.get("/current_user", (req, res) => {
 authRouter.get(
   "/github/callback",
   passport.authenticate("github", {
-    failureRedirect: "https://keddit-psi.vercel.app/login",
+    failureRedirect: "https://keddit-psi.vercel.app/",
   }),
   (req, res) => {
     res.redirect("https://keddit-psi.vercel.app/");
