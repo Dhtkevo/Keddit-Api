@@ -2,7 +2,7 @@ const GitHubStrategy = require("passport-github2").Strategy;
 import "dotenv/config";
 import passport from "passport";
 import { prisma } from "../db/prisma";
-import { getUserFromIdDB, getUserGitHubDB } from "../db/queries";
+import { getUserFromIdDB } from "../db/queries";
 
 interface UserExtended extends Express.User {
   id?: string;
